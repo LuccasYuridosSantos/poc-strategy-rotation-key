@@ -1,2 +1,2 @@
 # poc-strategy-rotation-key
-tPOC to rotation key with symmetric encryption keys
+POC to rotation key with symmetric encryption keys
