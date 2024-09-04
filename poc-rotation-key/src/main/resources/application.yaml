@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: poc-rotation-key
+  data:
+    mongodb:
+     uri: mongodb://localhost:27017/poc-rotation-key
+
+encryption:
+  keys:
+    V1 :  ${ENCRYPTION_KEY_V1}
+    V2: ${ENCRYPTION_KEY_V2}
+  active-key-version: V2
