@@ -1,7 +1,6 @@
 package com.luccas.poc_rotation_key.model;
 
-public record UserPIIInsertRequest(
-        String userId,
+public record UserRequest(
         String firstname,
         String lastname,
         String email,
