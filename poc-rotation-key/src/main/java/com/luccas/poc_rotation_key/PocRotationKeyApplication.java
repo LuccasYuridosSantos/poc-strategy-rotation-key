@@ -20,7 +20,7 @@ public class PocRotationKeyApplication {
 			keyGenerator.init(128,secureRandom);
 			SecretKey secretKey = keyGenerator.generateKey();
 			String base64Key  = Base64.getEncoder().encodeToString(secretKey.getEncoded());
-			System.out.println(base64Key);
+//			System.out.println(base64Key);
 		} catch (NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		}
