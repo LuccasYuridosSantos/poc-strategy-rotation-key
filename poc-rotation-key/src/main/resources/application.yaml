@@ -7,7 +7,7 @@ spring:
 
 encryption:
   keys:
-    V1: ${ENCRYPTION_KEY_V1:"QOgKN9uuhAzzDwPQeGeJvw=="}
-    V2: ${ENCRYPTION_KEY_V2:"WekOGfAbIPhMjlKz7IbE+g=="}
-    V3: ${ENCRYPTION_KEY_V3:"6CID6ebaHU4ZeTQv4AmBXg=="}
+    V1: ${ENCRYPTION_KEY_V1:QOgKN9uuhAzzDwPQeGeJvw==}
+    V2: ${ENCRYPTION_KEY_V2:WekOGfAbIPhMjlKz7IbE+g==}
+    V3: ${ENCRYPTION_KEY_V3:6CID6ebaHU4ZeTQv4AmBXg==}
   active-key-version: V2
