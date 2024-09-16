@@ -1,12 +1,13 @@
 package com.luccas.poc_rotation_key.controller;
 
-import com.luccas.poc_rotation_key.mapper.UserMapper;
-import com.luccas.poc_rotation_key.model.UserPIIInsertRequest;
-import com.luccas.poc_rotation_key.model.UserPIIResponse;
+import com.luccas.poc_rotation_key.model.UserRequest;
+import com.luccas.poc_rotation_key.model.UserResponse;
 import com.luccas.poc_rotation_key.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,26 +23,29 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final UserMapper userMapper;
 
-    public UserController(UserService userService,
-                          final UserMapper userMapper) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.userMapper = userMapper;
     }
 
     @GetMapping
-    public ResponseEntity<List<UserPIIResponse>> getAllUsers()
-            throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException,
-            InvalidKeyException {
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
         return ResponseEntity.ok(userService.getUsers());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponse> getUser(@PathVariable final String id) {
+        return userService.getUser(id);
+    }
+
+    @GetMapping("/all/users")
+    public ResponseEntity<List<UserResponse>> retrieveUser() {
+        return ResponseEntity.ok(userService.retrieveAndUpdateUsers());
+    }
+
     @PostMapping
-    public ResponseEntity<Void> saveUser(final UserPIIInsertRequest request)
-            throws IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException,
-            InvalidKeyException {
-        userService.saveUser(userMapper.mapToUserPII(request));
+    public ResponseEntity<Void> saveUser(@RequestBody final UserRequest request) {
+        userService.saveUser(request);
         return ResponseEntity.ok().build();
     }
 
